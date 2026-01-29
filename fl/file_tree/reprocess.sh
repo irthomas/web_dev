@@ -1,0 +1,11 @@
+./scripts/run_as_nomadr ./scripts/run_pipeline.py --log INFO make --from hdf5_l02a --to hdf5_l10a --beg 2018-06-15T01:52:52 --end 2018-06-15T01:53:52 --n_proc=1 --filter='.*_UVIS' --all
+./scripts/run_as_nomadr ./scripts/run_pipeline.py --log INFO make --from hdf5_l02a --to hdf5_l10a --beg 2018-08-16T11:25:13 --end 2018-08-16T11:26:13 --n_proc=1 --filter='.*_UVIS' --all
+./scripts/run_as_nomadr ./scripts/run_pipeline.py --log INFO make --from hdf5_l02a --to hdf5_l10a --beg 2018-09-05T03:37:36 --end 2018-09-05T03:38:36 --n_proc=1 --filter='.*_LNO' --all
+./scripts/run_as_nomadr ./scripts/run_pipeline.py --log INFO make --from hdf5_l02a --to hdf5_l10a --beg 2018-06-15T01:52:52 --end 2018-06-15T01:53:52 --n_proc=1 --filter='.*_UVIS' --all
+./scripts/run_as_nomadr ./scripts/run_pipeline.py --log INFO make --from hdf5_l02a --to hdf5_l10a --beg 2018-08-16T11:25:13 --end 2018-08-16T11:26:13 --n_proc=1 --filter='.*_UVIS' --all
+./scripts/run_as_nomadr ./scripts/run_pipeline.py --log INFO make --from hdf5_l02a --to hdf5_l10a --beg 2018-09-05T03:37:36 --end 2018-09-05T03:38:36 --n_proc=1 --filter='.*_LNO' --all
+./scripts/run_as_nomadr ./scripts/run_pipeline.py --log INFO make --from hdf5_l01a --to hdf5_l10a --beg 2022-10-11T02:44:38 --end 2022-10-11T02:45:38 --n_proc=1 --filter='.*_LNO' --all
+./scripts/run_as_nomadr ./scripts/run_pipeline.py --log INFO make --from hdf5_l01a --to hdf5_l10a --beg 2023-01-27T11:34:21 --end 2023-01-27T11:35:21 --n_proc=1 --filter='.*_LNO' --all
+./scripts/run_as_nomadr ./scripts/run_pipeline.py --log INFO make --from hdf5_l01a --to hdf5_l10a --beg 2023-02-17T07:40:51 --end 2023-02-17T07:41:51 --n_proc=1 --filter='.*_LNO' --all
+./scripts/run_as_nomadr ./scripts/run_pipeline.py --log INFO make --from hdf5_l01a --to hdf5_l10a --beg 2023-02-23T01:13:51 --end 2023-02-23T01:14:51 --n_proc=1 --filter='.*_LNO' --all
+./scripts/run_as_nomadr ./scripts/run_pipeline.py --log INFO make --from hdf5_l01a --to hdf5_l10a --beg 2023-02-25T22:00:51 --end 2023-02-25T22:01:51 --n_proc=1 --filter='.*_LNO' --all

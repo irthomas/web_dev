@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+	<link href="/static/assets/css/style.css" rel="stylesheet">
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #5e5e5e;
+}
+</style>
+</head>
+
+<body>
+<h1>Brussels COVID Tracker: Weekly Cases Per 100,000 Population in Selected Communes</h1> 
+<h2>Please note that the calculations here are now out of date since additional doses are now given out</h2>
+  <div id="vis_cases"></div>
+  
+  <script>
+    const cases = "cases.json";
+  	vegaEmbed("#vis_cases", cases)
+    	// result.view provides access to the Vega View API
+      .then(result => console.log(result))
+      .catch(console.warn);
+  </script>
+<p>Data is taken from <a href="https://epistat.wiv-isp.be/covid/" target="_blank">Sciensano</a>.</p>
+<br>
+
+
+
+<h1>Percent Vaccinations Given To Each Age Group</h1>  
+  <div id="vis_vacs"></div>
+  
+  <script>
+    const vacs = "vacs.json";
+  	vegaEmbed("#vis_vacs", vacs)
+    	// result.view provides access to the Vega View API
+      .then(result => console.log(result))
+      .catch(console.warn);
+  </script>
+<p>Here the solid lines represent the cumulative percentage of the Belgian population who have been give the 1st dose of a vaccine. The dotted lines indicate the percentage given the 2nd dose. Data is taken from <a href="https://epistat.wiv-isp.be/covid/" target="_blank">Sciensano</a>.</p>
+<br>
+
+
+
+<h1>Number of Vaccines Received From Manufacturers</h1>  
+  <div id="vis_doses"></div>
+  
+  <script>
+    const doses = "doses.json";
+  	vegaEmbed("#vis_doses", doses)
+    	// result.view provides access to the Vega View API
+      .then(result => console.log(result))
+      .catch(console.warn);
+  </script>
+<p>Data courtesy of <a href="https://twitter.com/jorisvaesen" target="_blank">@jorisvaesen</a> at <a href="https://covid-vaccinatie.be/en" target="_blank">covid-vaccinatie.be</a>. The extrapolated line is a quadratic based on the last 8 weeks of deliveries.
+<br>
+<br>
+<br>
+{% if calculations %}
+  {{calculations|safe}}
+{% endif %}
+<br>
+<br>
+<p>Ian Thomas 2021</p>
+<p><a href="../..">Return to main page</a></p>
+</body>
+
+
+
+</html>

@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>NOMAD data download service</title>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}"/>
+<link rel="shortcut icon" type="image/png" href="{% static 'assets/favicon.ico' %}"/>
+
+</head>
+<body>
+<h1>NOMAD data download service: {{ channel }} channel {{ level }}</h1>
+<p>Please enter your email address. Only valid email addresses of NOMAD team members will be accepted. If you believe you should have access, please email Ian.</p>
+<form action="" method="POST">
+{% csrf_token %}
+<p>
+<label for="regex">Regex:</label>
+<input type="text" id="regex" name="regex" value="{{ regex_str }}" size="50">
+</p>
+<p>
+<label for="email">Email:</label>
+<input type="text" id="email" name="email" value="x.x@aeronomie.be" size="50">
+</p>
+<p>
+<input type="submit" value="Update" name="update">
+<input type="submit" value="Download {{ nfiles }} Files" name="prepare_zip">
+</p>
+</form>
+<p>You are going to download {{ nfiles }} files. Please note that large requests can take time to be prepared - <b>do not close this page</b>.</p>
+{% for filename in filenames %}
+	{{ filename }}<br>
+{% endfor %}
+</body></html>

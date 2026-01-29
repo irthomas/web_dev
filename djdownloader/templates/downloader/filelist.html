@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>NOMAD data download service</title>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}"/>
+<link rel="shortcut icon" type="image/png" href="{% static 'assets/favicon.ico' %}"/>
+
+</head>
+<body>
+<h1>NOMAD data download service: {{ channel }} channel {{ level }}</h1>
+<p>Please enter a regular expression to search for filenames</p>
+<form action="" method="POST">
+{% csrf_token %}
+<p>
+<label for="regex">Regex:</label>
+<input type="text" id="regex" name="regex" value="{{ regex_str }}" size="50">
+</p>
+<p>
+<input type="submit" value="Update" name="update">
+<input type="submit" value="Download" name="download">
+</p>
+</form>
+<p>Examples:</p>
+<p><b>20210101_.*</b> finds all observations for this channel made on 1st January 2021</p>
+<p><b>.*_LNO_._N.*</b> finds all LNO nightside nadir observations</p>
+<p><b>.*_UVIS_L</b> finds all UVIS limb observations</p>
+<p><b>201[89][0-9][0-9][0-9][0-9]_.*</b> finds all files from 2018 and 2019</p>
+<p><b>.*_LNO_._.*_169</b> finds all LNO files measuring order 169</p>
+<p><b>.*_LNO_._D[FP]_189</b> finds all dayside nadir LNO measurements of order 189</p>
+<p><b>2019[0-9][0-9][0-9][0-9].*_LNO_._L_(164|166)</b> finds all 2020 LNO limb measurements of order 164 and 166</p>
+<p><b>2018(0[89]|10)[0-9][0-9].*_UVIS_N.*</b> finds all UVIS nightside measurements from August/September/October 2018</p>
+
+<p>{{ nfiles }} matching files found:</p>
+{% for filename in filenames %}
+	{{ filename }}<br>
+{% endfor %}
+</body></html>

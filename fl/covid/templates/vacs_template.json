@@ -1,0 +1,157 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "description": "COVID vaccinations by age group",
+  "width": 1000,
+  "height": 500,
+  "padding": 5,
+  "data": {
+    "values": [], 
+    "format": { "parse": { "x": "date" } } 
+  },
+  "layer": [
+    {
+      "encoding": {
+		"x": { "field": "vacs_date", "type": "temporal" }, 
+		"y": {
+		  "field": "vacs",
+		  "type": "quantitative",
+          "scale": {"domain": [0,100], "zero":true, "nice": false},
+          "axis": {"grid": true, "tickCount":20}
+		}, 
+		"color": {
+  		  "field": "age_group", 
+		  "type": "nominal", 
+		  "legend":{"title":"Age group and dose" },
+		  "scale": {
+		    "domain": [
+		      "00-11 1st dose", "00-11 2nd dose", 
+			  "12-15 1st dose", "12-15 2nd dose", 
+		      "16-17 1st dose", "16-17 2nd dose", 
+			  "18-24 1st dose", "18-24 2nd dose", 
+			  "25-34 1st dose", "25-34 2nd dose", 
+			  "35-44 1st dose", "35-44 2nd dose",
+			  "45-54 1st dose", "45-54 2nd dose",
+			  "55-64 1st dose", "55-64 2nd dose",
+			  "65-74 1st dose", "65-74 2nd dose",
+			  "75-84 1st dose", "75-84 2nd dose",
+			  "85+ 1st dose", "85+ 2nd dose"
+			], 
+			"range": [
+			  "#FE2712", "#FE2712",
+			  "#FC600A", "#FC600A",
+			  "#FB9902", "#FB9902",
+			  "#FCCC1A", "#FCCC1A",
+			  "#FEFE33", "#FEFE33",
+			  "#B2D732", "#B2D732",
+			  "#66B032", "#66B032",
+			  "#347C98", "#347C98",
+			  "#0247FE", "#0247FE",
+			  "#4424D6", "#4424D6",
+			  "#8601AF", "#8601AF"
+			]
+		  }
+        },
+		"strokeDash": {
+          "field": "age_group",
+          "type": "nominal",
+          "legend": {
+		    "title": "Age group and dose",
+			"symbolType": "stroke"
+		  },
+          "scale": {
+		    "domain": [
+		      "00-11 1st dose", "00-11 2nd dose", 
+			  "12-15 1st dose", "12-15 2nd dose", 
+		      "16-17 1st dose", "16-17 2nd dose", 
+			  "18-24 1st dose", "18-24 2nd dose", 
+			  "25-34 1st dose", "25-34 2nd dose", 
+			  "35-44 1st dose", "35-44 2nd dose",
+			  "45-54 1st dose", "45-54 2nd dose",
+			  "55-64 1st dose", "55-64 2nd dose",
+			  "65-74 1st dose", "65-74 2nd dose",
+			  "75-84 1st dose", "75-84 2nd dose",
+			  "85+ 1st dose", "85+ 2nd dose"
+		    ], 
+		    "range": [
+		      [0,0], [6,3],
+		      [0,0], [6,3],
+		      [0,0], [6,3],
+		      [0,0], [6,3],
+		      [0,0], [6,3],
+		      [0,0], [6,3],
+		      [0,0], [6,3],
+		      [0,0], [6,3],
+		      [0,0], [6,3],
+		      [0,0], [6,3],
+		      [0,0], [6,3]
+		    ]
+          }
+
+		}
+	  },
+      "layer": [
+        {"mark": "line"},
+        {
+          "selection": {
+            "label": {
+              "type": "single",
+              "nearest": true,
+              "on": "mouseover",
+              "encodings": ["x"],
+              "empty": "none"
+            }
+          },
+          "mark": "point",
+          "encoding": {
+            "opacity": {
+              "condition": {"selection": "label", "value": 1},
+              "value": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "transform": [{"filter": {"selection": "label"}}],
+      "layer": [
+        {
+          "mark": {"type": "rule", "color": "gray"},
+          "encoding": {
+            "x": {"type": "temporal", "field": "vacs_date", "aggregate": "min"}
+          }
+        },
+        {
+          "encoding": {
+            "text": {"type": "quantitative", "field": "vacs"},
+            "x": {"type": "temporal", "field": "vacs_date", "title":"Date"},
+            "y": {"type": "quantitative", "field": "vacs", "title":"Cumulative percentage of population given vaccines"}
+          },
+          "layer": [
+            {
+              "mark": {
+                "type": "text",
+                "stroke": "black",
+                "strokeWidth": 2,
+                "align": "left",
+                "dx": 5,
+                "dy": -5
+              }
+            },
+            {
+              "mark": {"type": "text", "align": "left", "dx": 5, "dy": -5},
+              "encoding": {
+                "color": {"type": "nominal", "field": "age_group"}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "config":{
+  "background": "black",
+  "title": {"color": "#fff"},
+  "style": {"guide-label": {"fill": "#fff"}, "guide-title": {"fill": "#fff"}},
+  "axis": {"domainColor": "#fff", "gridColor": "#888", "tickColor": "#fff"}
+  }
+}

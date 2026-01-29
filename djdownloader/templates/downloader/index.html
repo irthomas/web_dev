@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>NOMAD data download service</title>
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}"/>
+<link rel="shortcut icon" type="image/png" href="{% static 'assets/favicon.ico' %}"/>
+
+</head>
+<body>
+<h1>NOMAD data download service</h1>
+<p>Please select a channel</p>
+{% for channel in channels %}
+	<a href="{{ channel }}">{{ channel }}</a><br>
+{% endfor %}
+
+<br>
+<h3>Usage</h3>
+<p>Please note that the service will only work if your email address has been added to the system. Please contact Ian if you encounter any problems.</p>
+<p>This service is not designed for multiple users downloading a large number of files. The NOMAD ftp only has limited space available for temporarily hosting the zip files.</p>
+<br>
+<br>
+Ian Thomas 2021
+</body>
+</html>

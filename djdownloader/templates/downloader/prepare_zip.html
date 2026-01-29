@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>NOMAD data download service</title>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}"/>
+<link rel="shortcut icon" type="image/png" href="{% static 'assets/favicon.ico' %}"/>
+
+</head>
+<body>
+
+<h1>NOMAD data download service: {{ channel }} channel {{ level }}</h1>
+<p>The zip file is now ready to be downloaded. An email containing the link has been sent to {{ email }}.</p>
+<p>Once you have downloaded the file, please click the Delete Zip button below. After *TBD* hours the file will be automatically deleted.</p>
+
+<form action="" method="POST">
+{% csrf_token %}
+<p>
+<input type="text" id="zip" name="zip" value="{{ zip_filename }}" readonly>
+<input type="submit" value="Delete Zip" name="delete_zip">
+</p>
+</form>
+
+<p>The zip file contains {{ nfiles }} HDF5 files:</p>
+{% for filename in filenames %}
+	{{ filename }}<br>
+{% endfor %}
+
+<br>
+<p>{{ terminal_output }}</p>
+</body>
+</html>

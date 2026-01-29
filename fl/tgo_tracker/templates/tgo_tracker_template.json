@@ -1,0 +1,52 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 500,
+  "projection": {
+    "type": "mercator"
+  },
+  "data": {
+	"values": []
+  },
+  "encoding": {
+	"x": {
+	  "field": "lon",
+	  "type": "quantitative",
+	  "scale": {"domain": [-180, 180], "zero":false, "nice": false},
+	  "title": "Longitude",
+	  "axis": {"grid": true, "tickCount":15}
+	},
+	"y": {
+	  "field": "lat",
+	  "type": "quantitative",
+	  "scale": {"domain": [-90, 90], "zero":false, "nice": false},
+	  "title": "Latitude",
+	  "axis": {"grid": true, "tickCount":15}
+	},
+    "color": {
+      "field": "colour", "type": "quantitative",
+      "scale": {"domain": [0, 9], "scheme": "reds"},
+      "legend": null
+    },
+    "tooltip": {"field": "datetime", "type": "nominal"}
+  },
+  "layer": [{
+	"mark": {
+	  "type": "circle"
+	}
+  }, {
+	"mark": {
+	  "type": "text",
+	  "dy": -10
+	},
+	"encoding": {
+	  "text": {"field": "label", "type": "nominal"}
+	}
+  }],
+  "config":{
+    "background": "black",
+    "title": {"color": "#fff"},
+    "style": {"guide-label": {"fill": "#fff"}, "guide-title": {"fill": "#fff"}},
+    "axis": {"domainColor": "#fff", "gridColor": "#888", "tickColor": "#fff"}
+  }
+}

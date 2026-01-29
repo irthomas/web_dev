@@ -1,0 +1,13 @@
+
+#website:
+copy publications directly to cv page
+
+
+add description to each webpage. Add style sheet?
+
+
+#tgo tracker
+add mars map to TGO position
+
+
+#data downloader

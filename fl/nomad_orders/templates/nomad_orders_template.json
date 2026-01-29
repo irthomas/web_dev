@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "",
+  "width": 1200,
+  "height": 200,
+  "data": {
+	"values": []
+  },
+  "mark": "bar",
+  "encoding": {
+	"x": {
+	  "field": "label",
+	  "type": "nominal",
+	  "title": "Month"
+	},
+	"y": {
+	  "field": "n",
+	  "type": "quantitative",
+	  "title": "Number of observations",
+	  "scale": {"domain": [0, 9999999]}
+	},
+    "color": {
+      "field": "n", "type": "quantitative",
+      "scale": {"domain": [0, 9999999], "scheme": "reds"},
+      "legend": null
+    },
+    "tooltip": {"field": "label", "type": "nominal"}
+  },
+  "config":{
+    "background": "black",
+    "title": {"color": "#fff"},
+    "style": {"guide-label": {"fill": "#fff"}, "guide-title": {"fill": "#fff"}},
+    "axis": {"domainColor": "#fff", "gridColor": "#888", "tickColor": "#fff"}
+  }
+}

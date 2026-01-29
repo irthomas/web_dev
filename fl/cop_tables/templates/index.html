@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>NOMAD COP Rows</title>
+
+<style>
+    body {
+        font: 12px Arial,sans-serif; 
+        margin: 0px;
+    }
+    header {
+        padding: 5px 20px;
+        background: #eeeeee; 
+    }
+    header h1 {
+        font-size: 20px;
+    }
+    p {
+        line-height: 0.7;
+    }
+    .container {
+        width: 50%;
+        background: #ffffff;  
+    }
+    .list, .info {
+        float: left; 
+        padding: 4px;
+        min-height: 170px;
+        box-sizing: border-box;
+    }
+    .info {
+        width: 50%;
+		position: fixed;
+		left: 50%
+    }
+    .list {
+        width: 50%;             
+        background: #ffffff;
+    }    
+    .clearfix:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+	table {
+	  font-family: arial, sans-serif;
+	  border-collapse: collapse;
+      width: 100%;   
+	  
+	}
+
+	td, th {
+	  border: 1px solid #dddddd;
+	  text-align: center;
+	  padding: 4px;
+	}
+
+	tr:nth-child(even) {
+	  background-color: #dddddd;
+	}
+</style>
+
+</head>
+
+
+
+<body>
+
+<div class="container">
+
+<header>
+	<h1>NOMAD COP rows</h1>
+</header>
+
+<div class="wrapper clearfix">
+<div class="list">
+
+{% if subdomain_table %}
+  {{subdomain_table|safe}}
+{% endif %}
+
+</div>
+
+<div class="info">
+<div id="subd_info">No COP row selected</div>
+</div>
+</div>
+</div>
+
+<script>
+
+	function display_subd_info(channel, i) {
+	  var xhttp = new XMLHttpRequest(); //create object to communicate with server
+	  //onreadystatechange is the function to be executed every time that the readyState changes
+	  // readyState = 4 when response is ready; status = 200 means ok
+	  xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+		  document.getElementById("subd_info").innerHTML = this.responseText;
+		}
+	  };
+	  xhttp.open("GET", "info?channel="+channel+"&subd_row="+i, true);;
+	  xhttp.send();
+	}
+
+</script>
+
+</body>
+
+</html>
+

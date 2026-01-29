@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>NOMAD File Tree</title>
+
+<style>
+    body {
+        font: 11px Arial,sans-serif; 
+        margin: 0px;
+    }
+    header {
+        padding: 5px 20px;
+        background: #eeeeee; 
+    }
+    header h1 {
+        font-size: 20px;
+    }
+    .container {
+        width: 100%;
+        background: #ffffff;  
+    }
+    .list, .info {
+        float: left; 
+        padding: 4px;
+        min-height: 170px;
+        box-sizing: border-box;
+    }
+    .info {
+        width: 60%;
+		position: fixed;
+		left: 40%
+    }
+    .list {
+        width: 40%;             
+        background: #ffffff;
+    }    
+    .clearfix:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+	table {
+	  font-family: arial, sans-serif;
+	  border-collapse: collapse;
+	}
+
+	td, th {
+	  border: 1px solid #dddddd;
+	  text-align: center;
+	  padding: 4px;
+	}
+
+	tr:nth-child(even) {
+	  background-color: #dddddd;
+	}
+</style>
+
+</head>
+
+
+
+<body>
+
+<div class="container">
+
+<header>
+	<h1>NOMAD File Tree Browser            
+	
+		<a href="./?type=all_files"><button class=grey style="height:30px;width:250px">View All Files</button></a>
+		<a href="./?type=missing_files"><button class=grey style="height:30px;width:250px">View Only Missing Files</button></a>
+		<a href="./?type=failed_files"><button class=grey style="height:30px;width:250px">View Unknown Failed Files</button></a>
+		<a href="./download"><button class=grey style="height:30px;width:250px">Download Missing Files List</button></a>
+	</h1>
+</header>
+
+<div class="wrapper clearfix">
+<div class="list">
+
+{% if obs_type_table %}
+  {{obs_type_table|safe}}
+{% endif %}
+
+</div>
+
+<div class="info">
+<div id="obs_type_info">No observation selected</div>
+</div>
+</div>
+</div>
+
+<script>
+
+	function display_obs_info(i) {
+	  var xhttp = new XMLHttpRequest(); //create object to communicate with server
+	  //onreadystatechange is the function to be executed every time that the readyState changes
+	  // readyState = 4 when response is ready; status = 200 means ok
+	  xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+		  document.getElementById("obs_type_info").innerHTML = this.responseText;
+		}
+	  };
+	  xhttp.open("GET", "info?i="+i, true);;
+	  xhttp.send();
+	}
+
+</script>
+
+</body>
+
+</html>
+

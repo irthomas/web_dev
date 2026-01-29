@@ -1,0 +1,83 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "description": "COVID cases for selected communes in Brussels",
+  "width": 1000,
+  "height": 500,
+  "padding": 5,
+  "data": {
+    "values": [], 
+    "format": { "parse": { "x": "date" } } 
+  },
+  "layer": [
+    {
+      "encoding": {
+		"x": { "field": "cases_date", "type": "temporal" }, 
+		"y": { "field": "cases", "type": "quantitative" }, 
+		"color": { "field": "commune", "type": "nominal", "legend":{"title":"Commune" } }
+	  },
+      "layer": [
+        {"mark": "line"},
+        {
+          "selection": {
+            "label": {
+              "type": "single",
+              "nearest": true,
+              "on": "mouseover",
+              "encodings": ["x"],
+              "empty": "none"
+            }
+          },
+          "mark": "point",
+          "encoding": {
+            "opacity": {
+              "condition": {"selection": "label", "value": 1},
+              "value": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "transform": [{"filter": {"selection": "label"}}],
+      "layer": [
+        {
+          "mark": {"type": "rule", "color": "gray"},
+          "encoding": {
+            "x": {"type": "temporal", "field": "cases_date", "aggregate": "min"}
+          }
+        },
+        {
+          "encoding": {
+            "text": {"type": "quantitative", "field": "cases"},
+            "x": {"type": "temporal", "field": "cases_date", "title":"Date"},
+            "y": {"type": "quantitative", "field": "cases", "title":"Number of weekly cases per 100k population"}
+          },
+          "layer": [
+            {
+              "mark": {
+                "type": "text",
+                "stroke": "black",
+                "strokeWidth": 2,
+                "align": "left",
+                "dx": 5,
+                "dy": -5
+              }
+            },
+            {
+              "mark": {"type": "text", "align": "left", "dx": 5, "dy": -5},
+              "encoding": {
+                "color": {"type": "nominal", "field": "commune"}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "config":{
+  "background": "black",
+  "title": {"color": "#fff"},
+  "style": {"guide-label": {"fill": "#fff"}, "guide-title": {"fill": "#fff"}},
+  "axis": {"domainColor": "#fff", "gridColor": "#888", "tickColor": "#fff"}
+  }
+}
