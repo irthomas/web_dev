@@ -1,10 +1,12 @@
 # web_dev
-A place to test out django, flask and a homemade webserver
+A place to test out django, flask and a homemade webserver. The result can be found at [http://www.irthomas.eu/](http://www.irthomas.eu/).
 
 ## Setting up a website hosting service
-I chose OVH cloud with the least powerful VPS, it's easily enough for a small website.
+I chose OVH cloud, running Debian on the least powerful VPS. It's easily enough for a small website. 
 
-Then register with DNS and choose a website address, then set up a record to point to static ipv4 address of the VPS (see instructions elsewhere).
+To get a website url you will need to register with a DNS and choose an address, then set up a record to point to static ipv4 address of the VPS (see instructions elsewhere).
+
+Below are basic instructions for setting up a new Python webserver with apache on Debian.
 
 ## Installation
 Update debian
