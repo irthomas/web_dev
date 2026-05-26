@@ -144,6 +144,7 @@ def populate_sg_db(sg_d, clear=False):
     db_path = os.path.join(DB_PATH)
     con = connect_db(db_path)
     if clear:
+        print("Making empty table")
         empty_table(con, "sg")
         
     cur = con.cursor()

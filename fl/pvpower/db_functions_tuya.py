@@ -25,8 +25,18 @@ DICT_REFS = {
 class tuya(object):
 
     def __init__(self):
-        self.connect()
-        self.get_devices()
+        for i in range(0,10):
+            while True:
+                try:
+                    self.connect()
+                    self.get_devices()
+                except Exception as e:
+                    print(e)
+                    time.sleep(30)
+                    continue
+                break
+
+            
 
     def connect(self):
         self.tt = tinytuya.Cloud(
@@ -43,9 +53,15 @@ class tuya(object):
 
     def get_power(self, name):
         """get power in watts"""
-        id_ = self.device_d[name]
-        status = self.tt.getstatus(id_)
-        return status["result"][4]["value"] / 10.0
+        try:
+            id_ = self.device_d[name]
+            status = self.tt.getstatus(id_)
+            # result = status["result"][4]["value"] / 10.0
+            return status["result"][4]["value"] / 10.0
+        except Exception as e:
+            print(e)
+            return 0.0
+                    
 
     def switch_on(self, name):
         id_ = self.device_d[name]

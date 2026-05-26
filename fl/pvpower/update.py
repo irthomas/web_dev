@@ -12,6 +12,7 @@ import time
 from db_functions import make_db, DB_PATH
 
 if not os.path.exists(DB_PATH):
+    print("DB file not found, rebuilding")
     make_db(clear=True)
 
 i = 0
