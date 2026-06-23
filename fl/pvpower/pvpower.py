@@ -24,7 +24,7 @@ import pandas as pd
 
 from datetime import datetime, timedelta, timezone
 
-MAX_POINTS_PV = 2490
+MAX_POINTS_PV = 1660
 MAX_POINTS_PLUGS = 1240
 
 @app.route('/table/')
@@ -96,6 +96,7 @@ def today_plot():
     new_keys = ["Time", "Power from Grid", "Power to Grid"]
     for key, new_key in zip(data_d.keys(), new_keys):
         data_d[new_key] = data_d.pop(key) 
+    data_d["Net"] = data_d["Power to Grid"] + data_d["Power from Grid"]
     
     
     
@@ -110,6 +111,7 @@ def today_plot():
         
         data_d["Power to Grid"] = p_ret
         data_d["Power from Grid"] = p_del
+        data_d["Net"] = p_ret + p_del
         data_d["Time"] = utc_interp
 
 
