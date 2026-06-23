@@ -24,7 +24,8 @@ import pandas as pd
 
 from datetime import datetime, timedelta, timezone
 
-MAX_POINTS = 1500
+MAX_POINTS_PV = 2490
+MAX_POINTS_PLUGS = 1240
 
 @app.route('/table/')
 def make_pvpower_table():
@@ -99,9 +100,9 @@ def today_plot():
     
     
     #if more than 5000 entries, need to interpolate
-    if len(data_d["Time"]) > MAX_POINTS:
+    if len(data_d["Time"]) > MAX_POINTS_PV:
         seconds = [(dt - data_d["Time"][0]).total_seconds() for dt in data_d["Time"]]
-        seconds_interp = np.linspace(seconds[0], seconds[-1], num=MAX_POINTS)
+        seconds_interp = np.linspace(seconds[0], seconds[-1], num=MAX_POINTS_PV)
         p_ret = np.interp(seconds_interp, seconds, data_d["Power to Grid"])
         p_del = np.interp(seconds_interp, seconds, data_d["Power from Grid"])
         
@@ -199,9 +200,9 @@ def today_plot_tuya():
    
     
     #if more than 5000 entries, need to interpolate
-    if len(data_d["Time"]) > MAX_POINTS:
+    if len(data_d["Time"]) > MAX_POINTS_PLUGS:
         seconds = [(dt - data_d["Time"][0]).total_seconds() for dt in data_d["Time"]]
-        seconds_interp = np.linspace(seconds[0], seconds[-1], num=MAX_POINTS)
+        seconds_interp = np.linspace(seconds[0], seconds[-1], num=MAX_POINTS_PLUGS)
         
         for key in DICT_REFS.keys():
             data_d[key] = np.interp(seconds_interp, seconds, data_d[key])

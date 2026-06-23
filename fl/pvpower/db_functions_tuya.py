@@ -17,9 +17,10 @@ from config import DB_PATH_TUYA, TUYA_API
 
 # Plus ID and UTC
 DICT_REFS = {
-    "Dishwasher":"Dishwasher",
-    "Washing_machine":"Washing_machine",
-    "Fridge_and_freezer":"Fridge_and_freezer",
+    "Plug01":"Plug01",
+    "Plug02":"Plug02",
+    "Plug03":"Plug03",
+    "Plug04": "Plug04",
 }
 
 class tuya(object):
@@ -115,9 +116,10 @@ def empty_table(con, table_name):
     if table_name == "tuya":
         query = """CREATE TABLE tuya (id INTEGER PRIMARY KEY AUTOINCREMENT, \
                 Utc TEXT NOT NULL, \
-                Dishwasher REAL NOT NULL, \
-                Washing_machine REAL NOT NULL, \
-                Fridge_and_freezer REAL NOT NULL) """
+                Plug01 REAL NOT NULL, \
+                Plug02 REAL NOT NULL, \
+                Plug03 REAL NOT NULL, \
+                Plug04 REAL NOT NULL)"""
         
         cur.execute(query)
 
@@ -194,7 +196,7 @@ def get_data_from_utc(fields, table_name, dt_str):
 def get_plugs_for_day(dt):
     """function to get most important data for 1 day"""
     
-    fields = ["Utc", "Dishwasher", "Washing_machine", "Fridge_and_freezer"]
+    fields = ["Utc", "Plug01", "Plug02", "Plug03", "Plug04"]
     table_name = "tuya"
 
     dt_str = datetime.strftime(dt, "%Y-%m-%d")
